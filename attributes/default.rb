@@ -8,4 +8,4 @@ default["java_keystore"]["O"] = "Salsa Labs Inc."
 default["java_keystore"]["L"] = "Washington"
 default["java_keystore"]["ST"] = "DC"
 default["java_keystore"]["C"] = "US"
-default["java_keystore"]["cacerts"] = File.join(node[:java][:java_home], "jre", "lib", "security", "cacerts")
+

@@ -1,7 +1,13 @@
 include_recipe "java::oracle"
 
 jks = node[:java_keystore]
+node["java_keystore"]["cacerts"] = File.join(node[:java][:java_home], "jre", "lib", "security", "cacerts")
+
+Chef::Log.info("JAVA_HOME set to #{node[:java][:java_home]}")
+Chef::Log.info("cacerts set to #{node["java_keystore"]["cacerts"]}")
+
 execute "keytool-generate" do
+	Chef::Log.info("#{jks[:alias]}")
 	command <<-eos
 		keytool -genkey \
 		-alias #{jks[:alias]} \
@@ -15,7 +21,7 @@ end
 
 execute "keytool-import" do
 	command <<-eos
-		keytool -importkeystore -srckeystore #{jks[:cacerts]} \
+		keytool -importkeystore -srckeystore #{node["java_keystore"]["cacerts"]} \
 		-destkeystore #{jks[:path]} \
 		-deststorepass #{jks[:storepass]} \
 		-srcstorepass #{jks[:storepass]}
