@@ -6,6 +6,12 @@ node["java_keystore"]["cacerts"] = File.join(node[:java][:java_home], "jre", "li
 Chef::Log.info("JAVA_HOME set to #{node[:java][:java_home]}")
 Chef::Log.info("cacerts set to #{node["java_keystore"]["cacerts"]}")
 
+if FileTest.exists? jks[:path]
+	Chef::Log.info("removing #{jks[:path]}")
+	file jks[:path] do
+		action :delete
+	end
+end
 execute "keytool-generate" do
 	Chef::Log.info("#{jks[:alias]}")
 	command <<-eos
