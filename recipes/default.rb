@@ -1,4 +1,4 @@
-include_recipe "java::oracle"
+include_recipe "java"
 
 jks = node[:java_keystore]
 node["java_keystore"]["cacerts"] = File.join(node[:java][:java_home], "jre", "lib", "security", "cacerts")
