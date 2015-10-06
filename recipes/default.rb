@@ -1,7 +1,7 @@
 include_recipe "java"
 
 jks = node[:java_keystore]
-node["java_keystore"]["cacerts"] = File.join(node[:java][:java_home], "jre", "lib", "security", "cacerts")
+node.default["java_keystore"]["cacerts"] = File.join(node[:java][:java_home], "jre", "lib", "security", "cacerts")
 
 Chef::Log.info("JAVA_HOME set to #{node[:java][:java_home]}")
 Chef::Log.info("cacerts set to #{node["java_keystore"]["cacerts"]}")
