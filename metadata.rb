@@ -1,3 +1,4 @@
+name             "java_keystore"
 maintainer       "Salsa Labs, Inc."
 maintainer_email "cookbooks@salsalabs.com"
 license          "Apache 2.0"
